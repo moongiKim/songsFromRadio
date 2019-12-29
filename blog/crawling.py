@@ -8,8 +8,9 @@ from parse import *
 import json
 import chardet
 
-def get_seqid(address):
-    html = urllib.request.urlopen(address)
+def get_seqid(address, hdr):
+    req = urllib.request.Request(address, headers=hdr)
+    html = urllib.request.urlopen(req)
 
     bsObject = BeautifulSoup(html, "html.parser")
     tbody = bsObject.find('tbody')
@@ -25,8 +26,9 @@ def get_seqid(address):
 
     return seqID
 
-def get_songlist(address):
-    html = urllib.request.urlopen(address)
+def get_songlist(address, hdr):
+    req = urllib.request.Request(address, headers=hdr)
+    html = urllib.request.urlopen(req)
     bsObject = BeautifulSoup(html, "html.parser")
 
     #print(bsObject)
